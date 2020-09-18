@@ -1,5 +1,6 @@
 pipeline {
     agent none
+
     stages {
 	
         stage('Maven Install') { 
@@ -26,6 +27,21 @@ pipeline {
 	              sh "docker build -t lathika/spring-boot-rest:latest . "
 }
            }
+    }
+	stage('Docker Push') {
+      	     agent {
+                docker {
+                  image 'docker'
+                  args '-v /var/run/docker.sock:/var/run/docker.sock'
+                 }
+               } 
+      
+steps {
+        withCredentials([usernamePassword(credentialsId: 'artifactory', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+          sh "docker login -u ${env.USERNAME} -p ${env.PASSWORD}"
+          sh 'docker push lathika/spring-boot-rest:latest'
+        }
+      }
     }
   }
     
