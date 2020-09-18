@@ -38,7 +38,7 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "art-1",
-                    image: "casestudy.jfrog.io/artifactory/my-docker-repo/lathika/spring-boot-rest:latest",
+                    image: "casestudy.jfrog.io/my-docker-repo/lathika/spring-boot-rest:latest",
                     targetRepo: 'my-docker-repo',
                     properties: 'project-name=docker1;status=stable'
                 )
