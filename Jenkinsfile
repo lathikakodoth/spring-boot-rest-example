@@ -18,7 +18,7 @@ pipeline {
 	    agent any
             steps {
                 script {
-                sh 'which docker'
+                sh 'whoami'
                 sh "export PATH=/usr/bin:$PATH" 
 		sh 'printenv'
 		sh 'docker build -t lathika/spring-boot-rest:latest .'
