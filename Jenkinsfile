@@ -3,15 +3,6 @@ pipeline {
 
     stages {
 
-         stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id:  "art-1",
-                    url: "https://casestudy.jfrog.io/artifactory",
-                    credentialsId: "artifactory"
-                )
-            }
-        }	
         stage('Maven Install') { 
 	    
     agent {
