@@ -14,7 +14,7 @@ pipeline {
 	 stage('Docker Build') {
             steps {
                 sh 'which docker'
-		sh 'docker build -t lathika/spring-boot-rest:latest .'
+		sh '/usr/bin/docker build -t lathika/spring-boot-rest:latest .'
            }
     }
   }
