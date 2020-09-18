@@ -6,10 +6,16 @@ pipeline {
         }
     }
     stages {
-        stage('Build') { 
+        stage('Maven Install') { 
             steps {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
+	 stage('Docker Build') {
+            steps {
+               sh 'docker build -t lathika/spring-boot-rest:latest .'
+           }
     }
+  }
+    
 }
