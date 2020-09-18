@@ -46,6 +46,12 @@ pipeline {
         }
 
         stage ('Publish build info') {
+
+	     agent {
+                docker {
+                  image 'openjdk:11.0.7'
+                 }
+		}
             steps {
                 rtPublishBuildInfo (
                     serverId: "art-1"
