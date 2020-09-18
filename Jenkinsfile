@@ -16,6 +16,7 @@ pipeline {
             }
         }
 	 stage('Docker Build') {
+            agent any
             steps {
                 script {
 	              sh "docker build -t casestudy.jfrog.io/my-docker-repo/lathika/spring-boot-rest:latest . "
