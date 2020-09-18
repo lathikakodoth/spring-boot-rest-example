@@ -16,6 +16,7 @@ pipeline {
             steps {
                 script {
                 sh 'which docker'
+		sh 'printenv'
 		sh 'docker build -t lathika/spring-boot-rest:latest .'
 }
            }
