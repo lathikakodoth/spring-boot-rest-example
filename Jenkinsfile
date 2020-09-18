@@ -2,7 +2,16 @@ pipeline {
     agent none
 
     stages {
-	
+
+         stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id:  "art-1",
+                    url: "https://casestudy.jfrog.io/artifactory",
+                    credentialsId: "artifactory"
+                )
+            }
+        }	
         stage('Maven Install') { 
 	    
     agent {
@@ -28,21 +37,23 @@ pipeline {
 }
            }
     }
-	stage('Docker Push') {
-      	     agent {
-                docker {
-                  image 'docker'
-                  args '-v /var/run/docker.sock:/var/run/docker.sock'
-                 }
-               } 
-      
-steps {
-        withCredentials([usernamePassword(credentialsId: 'artifactory', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          sh "docker login -u ${env.USERNAME} -p ${env.PASSWORD}"
-          sh 'docker push lathika/spring-boot-rest:latest'
+   		stage ('Push image to Artifactory') {
+            steps {
+                rtDockerPush(
+                    serverId: "art-1",
+                    image: "https://casestudy.jfrog.io/artifactory/docker-local/lathika/spring-boot-rest:latest",
+                    targetRepo: 'my-docker-repo',
+                    properties: 'project-name=docker1;status=stable'
+                )
+            }
         }
-      }
-    }
-  }
-    
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "art-1"
+                )
+            }
+        } 
+}
 }
