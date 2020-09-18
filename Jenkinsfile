@@ -24,7 +24,7 @@ pipeline {
                } 
             steps {
                 script {
-	              sh "docker build -t https://casestudy.jfrog.io/artifactory/docker-local/lathika/spring-boot-rest:latest . "
+	              sh "docker build  https://casestudy.jfrog.io/docker-local/lathika/spring-boot-rest:latest . "
 }
            }
     }
