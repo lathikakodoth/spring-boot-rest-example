@@ -9,7 +9,7 @@ pipeline {
     stages {
 	stage('build') {
             steps {
-        sh 'docker run hello-world'
+        sh 'docker build -t lathika/spring-boot-rest:latest .'
     }
 }
 }
