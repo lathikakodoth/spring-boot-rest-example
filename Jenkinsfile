@@ -5,6 +5,9 @@ pipeline {
             args '-v /root/.m2:/root/.m2' 
         }
     }
+    environment {
+    PATH = "/usr/bin:$PATH"
+  }
     stages {
         stage('Maven Install') { 
             steps {
