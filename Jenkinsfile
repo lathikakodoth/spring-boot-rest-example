@@ -12,9 +12,10 @@ pipeline {
             }
         }
 	 stage('Docker Build') {
+	    agent any
             steps {
                 sh 'which docker'
-		sh '/usr/bin/docker build -t lathika/spring-boot-rest:latest .'
+		sh 'docker build -t lathika/spring-boot-rest:latest .'
            }
     }
   }
