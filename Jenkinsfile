@@ -7,6 +7,10 @@ pipeline {
     }
 
     stages {
+	stage('build') {
+            steps {
         sh 'docker run hello-world'
     }
+}
+}
 }
