@@ -24,7 +24,7 @@ pipeline {
                } 
             steps {
                 script {
-	              sh "docker build  https://casestudy.jfrog.io/docker-local/lathika/spring-boot-rest:latest . "
+	              sh "docker build -t casestudy.jfrog.io/my-docker-repo/lathika/spring-boot-rest:latest . "
 }
            }
     }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 rtDockerPush(
                     serverId: "art-1",
-                    image: "https://casestudy.jfrog.io/artifactory/docker-local/lathika/spring-boot-rest:latest",
+                    image: "casestudy.jfrog.io/artifactory/my-docker-repo/lathika/spring-boot-rest:latest",
                     targetRepo: 'my-docker-repo',
                     properties: 'project-name=docker1;status=stable'
                 )
