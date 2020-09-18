@@ -34,6 +34,10 @@ pipeline {
                 docker {
                   image 'openjdk:11.0.7'
                  }
+		 docker {                                              
+		   image 'docker'                                      
+		   args '-v /var/run/docker.sock:/var/run/docker.sock' 
+		  }                                                    
                } 
             steps {
                 rtDockerPush(
