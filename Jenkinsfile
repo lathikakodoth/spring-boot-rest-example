@@ -14,8 +14,10 @@ pipeline {
 	 stage('Docker Build') {
 	    agent any
             steps {
+                script {
                 sh 'which docker'
 		sh 'docker build -t lathika/spring-boot-rest:latest .'
+}
            }
     }
   }
