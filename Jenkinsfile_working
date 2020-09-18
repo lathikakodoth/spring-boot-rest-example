@@ -16,6 +16,12 @@ pipeline {
             }
         }
 	 stage('Docker Build') {
+	     agent {
+                docker {
+                  image 'docker'
+                  args '-v /var/run/docker.sock:/var/run/docker.sock'
+                 }
+               } 
             steps {
                 script {
 	              sh "docker build -t casestudy.jfrog.io/my-docker-repo/lathika/spring-boot-rest:latest . "
