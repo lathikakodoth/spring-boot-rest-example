@@ -32,8 +32,7 @@ pipeline {
 
 	     agent {
                 docker {
-                  image 'docker'
-                  args '-v /var/run/docker.sock:/var/run/docker.sock'
+                  image 'openjdk:11.0.7'
                  }
                } 
             steps {
