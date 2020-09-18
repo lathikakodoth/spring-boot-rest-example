@@ -15,10 +15,15 @@ pipeline {
             }
         }
 	 stage('Docker Build') {
-	    agent any
+	     agent {
+                docker {
+                  image 'docker'
+                  args '-v /var/run/docker.sock:/var/run/docker.sock'
+                 }
+               } 
             steps {
                 script {
-		docker.build  "lathika/spring-boot-rest:latest"
+	              sh "docker build -t lathika/spring-boot-rest:latest . "
 }
            }
     }
